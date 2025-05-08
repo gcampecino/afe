@@ -1,6 +1,9 @@
+"use client";
+/*
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+//import * as React from "react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +26,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <html lang="en">
+        <body className={`bg-gray-50`}>{children}</body>
+      </html>
+    
+  );
+}
+ */
+
+// app/layout.tsx
+
+// globals.css includes @tailwind directives
+// adjust the path if necessary
+//import "@/styles/globals.css";
+import "./globals.css";
+import { Providers } from "./providers";
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className="dark">
+      <body>
+        <Providers >
+          <div>
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
