@@ -8,7 +8,6 @@ phases:
   install:
     commands:
       - echo Installing dependency...
-      - mkdir node_modules
       - npm install -g next
       - npm install -g typescript
       - npm install
@@ -16,6 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
+      - mkdir node_modules
       - npm run build
 artifacts:
   files:
