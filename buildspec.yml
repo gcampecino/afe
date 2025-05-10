@@ -8,14 +8,14 @@ phases:
   install:
     commands:
       - echo Installing dependency...
-      - npx install -g next
-      - npx install -g typescript
-      - npx install
+      - pnpm install -g next
+      - pnpm install -g typescript
+      - pnpm install
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - npx run build
+      - pnpm run build
 artifacts:
   files:
     - "**/*"
