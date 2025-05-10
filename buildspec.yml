@@ -8,6 +8,7 @@ phases:
   install:
     commands:
       - echo Installing dependency...
+      - mkdir node_modules
       - npm install -g next
       - npm install -g typescript
       - npm install
