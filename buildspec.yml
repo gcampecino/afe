@@ -8,7 +8,6 @@ phases:
   pre_build:
     commands:
       - echo "Pre Build..."
-      - mkdir ./node_modules
   install:
     commands:
       - echo Installing dependency...
