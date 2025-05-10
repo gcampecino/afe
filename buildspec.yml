@@ -5,6 +5,10 @@ env:
     APP_ENV: "development"
 
 phases:
+  pre_build:
+    commands:
+      - echo "Pre Build..."
+      - mkdir ./node_modules
   install:
     commands:
       - echo Installing dependency...
@@ -15,7 +19,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - mkdir node_modules
       - npm run build
 artifacts:
   files:
