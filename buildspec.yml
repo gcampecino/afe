@@ -5,9 +5,6 @@ env:
     APP_ENV: "development"
 
 phases:
-  pre_build:
-    commands:
-      - echo "Pre Build..."
   install:
     commands:
       - echo Installing dependency...
