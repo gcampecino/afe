@@ -6,11 +6,12 @@ import { Form, Input, Button, addToast } from "@heroui/react";
 import { handleErrorMessage } from 'app/components/shared/utils'
 import { LoginSchema } from "app/components/schema/Schema";
 import { login } from './api/Api';
+import { any, string } from 'zod';
 
 function LoginFormComponent() {
   const router = useRouter()
-  const [serverErrors, setServerErrors] = useState({});
-  const [errors, setErrors] = useState({});
+  const [serverErrors, setServerErrors] = useState <string>("");
+  const [errors, setErrors] = useState <any> ({});
 
   // Handle notification from server response
   useEffect(() => {
@@ -18,14 +19,14 @@ function LoginFormComponent() {
       addToast({
         title: "Notification",
         description: serverErrors,
-        color: 'Danger',
+        color: 'danger',
       })
     }
     setServerErrors("")
   }, [serverErrors]);
 
   //  Handle form submit
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event  : any) => {
     event.preventDefault();
 
     //  Process form data
@@ -47,7 +48,8 @@ function LoginFormComponent() {
         } else
           setServerErrors(response.msg);
       } catch (e) {
-        setServerErrors(e);
+        console.log(e)
+        setServerErrors("Server error.");
       }
 
     } else {
@@ -58,7 +60,7 @@ function LoginFormComponent() {
   return (<>
     <Form
       className="w-full justify-center items-center space-y-4"
-      onSubmit={handleSubmit} noValidate
+      onSubmit={handleSubmit}
     >
       <div className="flex flex-col gap-4 max-w-md">
         <div>

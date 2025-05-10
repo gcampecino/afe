@@ -8,7 +8,7 @@ const AxiosInstance = axios.create({
 AxiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
-        const accessToken = JSON.parse(token);
+        const accessToken = JSON.parse(token || "");
 
         // If token is present, add it to request's Authorization Header
         if (accessToken) {
@@ -35,7 +35,7 @@ AxiosInstance.interceptors.response.use(
     }
 );
 
-export const createUser = async (payload) => {
+export const createUser = async (payload  : any) => {
     try {
         const response = await AxiosInstance.post(
             'api/user-create/',
@@ -45,11 +45,12 @@ export const createUser = async (payload) => {
         return response.data
 
     } catch (e) {
+        console.log(e)
         throw new Error("Error when creating a user.")
     }
 }
 
-export const login = async (payload) => {
+export const login = async (payload  : any) => {
     try {
         const response = await AxiosInstance.post(
             'api/auth/',
@@ -59,6 +60,7 @@ export const login = async (payload) => {
         return response.data
 
     } catch (e) {
+        console.log(e)
         throw new Error("Error logging in.")
     }
 }
@@ -72,6 +74,7 @@ export const profileList = async () => {
         return response.data
 
     } catch (e) {
+        console.log(e)
         throw new Error("Error getting list.")
     }
 }

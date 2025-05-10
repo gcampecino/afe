@@ -4,9 +4,8 @@ const CustomButton = ({
     type,
     displayText,
     bgColor,
-    color,
     ...props
-}) => {
+} : any ) => {
 
     const custBgColor = bgColor ? bgColor : "bg-custom-burgundy"
     return (

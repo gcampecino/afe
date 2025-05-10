@@ -11,7 +11,7 @@ import { createUser } from './api/Api';
 function UserFormComponent() {
   const router = useRouter()
   const [serverErrors, setServerErrors] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState <any> ({});
 
   // Handle notification from server response
   useEffect(() => {
@@ -19,19 +19,19 @@ function UserFormComponent() {
       addToast({
         title: "Notification",
         description: serverErrors,
-        color: 'Danger',
+        color: 'danger',
       })
     }
     setServerErrors("")
   }, [serverErrors]);
 
   //  Handle form submit
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event : any) => {
     event.preventDefault();
 
     //  Process form data
     const formData = new FormData(event.currentTarget)
-    const data = Object.fromEntries(formData)
+    const data:any = Object.fromEntries(formData)
     data.birth_date = new Date(data.birth_date)
 
     if (!data.hasOwnProperty('accept_terms_conditions'))
@@ -55,7 +55,8 @@ function UserFormComponent() {
           setServerErrors(response.msg);
 
       } catch (e) {
-        setServerErrors(e);
+        console.log(e)
+        setServerErrors("Server error.");
       }
 
     } else {
@@ -64,7 +65,7 @@ function UserFormComponent() {
   }
 
   //  Handle field change
-  const handleChange = (event) => {
+  const handleChange = (event : any) => {
     const fieldError = validateField(event.currentTarget.name, event.currentTarget.value, errors, UserSchema)
 
     setErrors({
@@ -73,7 +74,7 @@ function UserFormComponent() {
   }
 
   //  Handle checkbox change
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event : any) => {
     const fieldError = validateField(event.currentTarget.name, event.currentTarget.checked, errors, UserSchema)
 
     setErrors({
@@ -82,7 +83,7 @@ function UserFormComponent() {
 
   };
 
-  const handleDatePickerChange = (event) => {
+  const handleDatePickerChange = (event : any) => {
     const value = new Date(event.year + '-' + event.month + '-' + event.day)
     const fieldError = validateField('birth_date', value, errors, UserSchema)
 
@@ -95,7 +96,6 @@ function UserFormComponent() {
     <Form
       className="w-full justify-center items-center space-y-4"
       onSubmit={handleSubmit}
-      noValidate
     >
       <div className="flex flex-col gap-4 max-w-md">
         <div>
@@ -128,7 +128,6 @@ function UserFormComponent() {
             name="birth_date"
             label="Birth Date"
             labelPlacement="outside"
-            variant="flat"
             isRequired
             variant="bordered"
             showMonthAndYearPickers
