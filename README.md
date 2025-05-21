@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+This project main is for the core profile, logi, registration page using Django as backend.
+The backend is yet to be uploaded here in github.
+
+
 ## Getting Started
 
 First, run the development server:
